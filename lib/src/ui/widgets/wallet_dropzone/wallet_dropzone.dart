@@ -6,6 +6,8 @@ import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WalletDropzone extends StatelessWidget {
+  const WalletDropzone({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     DropzoneViewController controller;

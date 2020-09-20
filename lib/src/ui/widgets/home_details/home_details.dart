@@ -4,6 +4,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 
 class HomeDetails extends StatelessWidget {
+  const HomeDetails({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(

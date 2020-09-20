@@ -37,6 +37,8 @@ dependencies:
     git:
       url: https://github.com/CDDelta/arweave-dart.git
       ref: d7b9aba76f34ef005d7ea681ffa1bd3b58181901
+  stacked: ^1.7.6
+  provider: ^4.3.2+2
 
 dev_dependencies:
   flutter_test:

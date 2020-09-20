@@ -3,7 +3,11 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FooterOuterLogo extends StatelessWidget {
-  const FooterOuterLogo({this.imagePath, this.url});
+  const FooterOuterLogo({
+    Key key,
+    this.imagePath,
+    this.url,
+  }) : super(key: key);
 
   final String imagePath;
   final String url;
