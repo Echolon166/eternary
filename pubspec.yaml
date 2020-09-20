@@ -31,6 +31,7 @@ dependencies:
   responsive_builder: ^0.3.0
   flutter_dropzone: ^1.0.9
   dotted_border: ^1.0.6
+  get_it: ^5.0.0
 
 dev_dependencies:
   flutter_test:

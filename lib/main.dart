@@ -1,3 +1,4 @@
+import 'package:eternary/utils/locator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:eternary/src/app.dart';
 
 void main() {
   setupLicenses();
+  setupLocator();
 
   runApp(MyApp());
 }
