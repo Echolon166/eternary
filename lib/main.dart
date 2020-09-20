@@ -1,4 +1,4 @@
-import 'package:eternary/utils/locator.dart';
+import 'package:eternary/src/services/locator_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
