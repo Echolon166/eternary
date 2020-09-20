@@ -16,11 +16,17 @@ class NavigationBarTabletDesktop extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               //  TODO:
-              NavBarItem(Constants.about, Constants.TimelineRoute),
+              NavBarItem(
+                title: Constants.about,
+                navigationRoute: Constants.TimelineRoute,
+              ),
               SizedBox(
                 width: 60,
               ),
-              NavBarItem(Constants.logout, Constants.HomeRoute),
+              NavBarItem(
+                title: Constants.logout,
+                navigationRoute: Constants.HomeRoute,
+              ),
             ],
           ),
         ],

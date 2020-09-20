@@ -1,3 +1,4 @@
+import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:eternary/src/ui/widgets/navigation_bar/navigation_bar.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:eternary/src/services/locator_service.dart';
@@ -22,6 +23,7 @@ class LayoutTemplate extends StatelessWidget {
                 initialRoute: Constants.HomeRoute,
               ),
             ),
+            Footer(),
           ],
         ),
       ),

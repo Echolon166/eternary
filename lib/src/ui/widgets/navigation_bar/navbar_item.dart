@@ -2,7 +2,7 @@ import 'package:eternary/src/services/locator_service.dart';
 import 'package:flutter/material.dart';
 
 class NavBarItem extends StatelessWidget {
-  const NavBarItem(this.title, this.navigationRoute);
+  const NavBarItem({this.title, this.navigationRoute});
 
   final String title;
   final String navigationRoute;
