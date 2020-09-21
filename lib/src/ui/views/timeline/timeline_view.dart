@@ -10,14 +10,17 @@ class TimelineView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<TimelineViewModel>.reactive(
       viewModelBuilder: () => TimelineViewModel(),
+      onModelReady: (model) => model.getEntries(),
       builder: (context, model, child) => SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            EntryList(
-              entries: model.entries,
-            ),
+            model.entries == null
+                ? CircularProgressIndicator()
+                : EntryList(
+                    entries: model.entries,
+                  ),
           ],
         ),
       ),

@@ -18,7 +18,7 @@ class LayoutTemplate extends StatelessWidget {
         backgroundColor: Colors.white,
         body: CenteredView(
           child: ConstrainedFlexView(
-            640,
+            700,
             child: Column(
               children: [
                 NavigationBar(),

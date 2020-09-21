@@ -1,4 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:dotted_border/dotted_border.dart';
+import 'package:eternary/src/services/arweave_service.dart';
+import 'package:eternary/src/services/locator_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:eternary/theme/text_styles.dart';
@@ -26,15 +30,19 @@ class WalletDropzone extends StatelessWidget {
                 cursor: CursorType.grab,
                 onCreated: (ctrl) => controller = ctrl,
                 onDrop: (ev) async {
-                  //Uint8List data = await controller.getFileData(ev);
-                  //  TODO: login/change screen, send this part to dropzone from outside
+                  Uint8List data = await controller.getFileData(ev);
+                  if (locator<ArweaveService>().login(data)) {
+                    locatorNavigateTo(Constants.TimelineRoute);
+                  }
                 },
               ),
               InkWell(
                 onTap: () async {
                   dynamic ev = await controller.pickFiles(multiple: false);
-                  //Uint8List data = await controller.getFileData(ev[0]);
-                  //  TODO: login/change screen, send this part to dropzone from outside
+                  Uint8List data = await controller.getFileData(ev[0]);
+                  if (locator<ArweaveService>().login(data)) {
+                    locatorNavigateTo(Constants.TimelineRoute);
+                  }
                 },
                 child: Container(
                   child: DottedBorder(

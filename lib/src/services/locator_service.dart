@@ -1,3 +1,4 @@
+import 'package:eternary/src/services/arweave_service.dart';
 import 'package:eternary/src/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -5,7 +6,12 @@ import 'package:get_it/get_it.dart';
 GetIt locator = GetIt.instance;
 
 void setupLocator() {
-  locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton(
+    () => NavigationService(),
+  );
+  locator.registerLazySingleton(
+    () => ArweaveService(),
+  );
 }
 
 void locatorNavigateTo(String navigationRoute) {
