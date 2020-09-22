@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class EntryItem extends StatelessWidget {
   const EntryItem({
     Key key,
-    this.model,
+    this.entry,
   }) : super(key: key);
 
-  final EntryItemModel model;
+  final EntryItemModel entry;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class EntryItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                model.title,
+                entry.title,
                 style: TextStyle(
                   fontFamily: 'PalanquinDark',
                   fontWeight: FontWeight.w600,
@@ -34,7 +34,7 @@ class EntryItem extends StatelessWidget {
                 softWrap: true,
               ),
               Text(
-                model.entryText,
+                entry.entryText,
                 style: TextStyle(
                   fontFamily: 'Overpass',
                   fontSize: 10,

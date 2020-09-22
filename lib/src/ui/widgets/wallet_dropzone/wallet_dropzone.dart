@@ -1,20 +1,24 @@
 import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
-import 'package:eternary/src/services/arweave_service.dart';
-import 'package:eternary/src/services/locator_service.dart';
+import 'package:eternary/src/viewmodels/landing_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:eternary/theme/text_styles.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:stacked/stacked.dart';
 
 /// WalletDropzone is to get the Arweave wallet keyfile from the user.
-class WalletDropzone extends StatelessWidget {
-  const WalletDropzone({Key key}) : super(key: key);
+class WalletDropzone extends ViewModelWidget<LandingViewModel> {
+  const WalletDropzone({Key key})
+      : super(
+          key: key,
+          reactive: false,
+        );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, LandingViewModel viewModel) {
     DropzoneViewController controller;
 
     return ResponsiveBuilder(
@@ -33,7 +37,7 @@ class WalletDropzone extends StatelessWidget {
 
                 /// Called when user drops a file to WalletDropzone.
                 onDrop: (ev) {
-                  loginUsingWalletKeyfile(controller, ev);
+                  loginUsingWalletKeyfile(viewModel, controller, ev);
                 },
               ),
               InkWell(
@@ -69,7 +73,7 @@ class WalletDropzone extends StatelessWidget {
                 /// Called when user clicks to WalletDropzone to select a file.
                 onTap: () async {
                   dynamic ev = await controller.pickFiles(multiple: false);
-                  loginUsingWalletKeyfile(controller, ev[0]);
+                  loginUsingWalletKeyfile(viewModel, controller, ev[0]);
                 },
               ),
             ],
@@ -81,12 +85,11 @@ class WalletDropzone extends StatelessWidget {
 
   /// Login using the [key] which is obtained from the [ev], the wallet keyfile.
   void loginUsingWalletKeyfile(
+    LandingViewModel viewModel,
     DropzoneViewController controller,
     dynamic ev,
   ) async {
     Uint8List key = await controller.getFileData(ev);
-    if (locator<ArweaveService>().login(key)) {
-      locatorNavigateTo(Constants.HomeRoute);
-    }
+    viewModel.login(key);
   }
 }

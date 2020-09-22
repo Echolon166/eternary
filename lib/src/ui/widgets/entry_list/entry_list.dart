@@ -1,21 +1,20 @@
-import 'package:eternary/src/models/entry_item_model.dart';
 import 'package:eternary/src/ui/widgets/entry_list/entry_item.dart';
+import 'package:eternary/src/viewmodels/home_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-class EntryList extends StatelessWidget {
-  const EntryList({Key key, this.entries}) : super(key: key);
-
-  final List<EntryItemModel> entries;
+class EntryList extends ViewModelWidget<HomeViewModel> {
+  const EntryList({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel viewModel) {
     //  TODO: Use list? instead of wrap
     return Wrap(
       spacing: 30,
       runSpacing: 30,
       children: [
-        ...entries.map(
-          (entry) => EntryItem(model: entry),
+        ...viewModel.entries.map(
+          (entry) => EntryItem(entry: entry),
         ),
       ],
     );

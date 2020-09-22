@@ -1,5 +1,5 @@
 import 'package:eternary/src/ui/widgets/entry_list/entry_list.dart';
-import 'package:eternary/src/viewmodels/home_view_model.dart';
+import 'package:eternary/src/viewmodels/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,11 +16,7 @@ class HomeView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            model.entries == null
-                ? CircularProgressIndicator()
-                : EntryList(
-                    entries: model.entries,
-                  ),
+            model.entries == null ? CircularProgressIndicator() : EntryList(),
           ],
         ),
       ),
