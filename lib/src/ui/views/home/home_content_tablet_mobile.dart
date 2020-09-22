@@ -1,11 +1,11 @@
-import 'package:eternary/src/ui/widgets/constrained_flex_view/constrained_flex_view.dart';
 import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:eternary/src/ui/widgets/wallet_dropzone/wallet_dropzone.dart';
 import 'package:flutter/material.dart';
 import 'package:eternary/src/ui/widgets/home_details/home_details.dart';
 
-class HomeContentMobile extends StatelessWidget {
-  const HomeContentMobile({Key key}) : super(key: key);
+/// Tablet/Mobile adaptation of the home view.
+class HomeContentTabletMobile extends StatelessWidget {
+  const HomeContentTabletMobile({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

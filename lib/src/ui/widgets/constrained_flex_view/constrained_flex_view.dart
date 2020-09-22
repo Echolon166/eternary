@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Wraps the [child] with ScrollView if the screen is too small to fit the contents inside,
+///   otherwise lets the content expand.
 class ConstrainedFlexView extends StatelessWidget {
   const ConstrainedFlexView(
     this.minSize, {
@@ -19,7 +21,13 @@ class ConstrainedFlexView extends StatelessWidget {
     return LayoutBuilder(
       builder: (_, constraints) {
         double viewSize = isHz ? constraints.maxWidth : constraints.maxHeight;
-        if (viewSize > minSize) return child;
+
+        /// Returns the child itself back if the screen is big enough.
+        if (viewSize > minSize) {
+          return child;
+        }
+
+        /// Wraps the child with ScrollView if the screen is not big enough.
         return SingleChildScrollView(
           scrollDirection: axis ?? Axis.vertical,
           child: ConstrainedBox(

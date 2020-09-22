@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:arweave/arweave.dart';
 import 'package:eternary/src/models/entry_item_model.dart';
 
+/// ArweaveService is to handle the tasks which are related to Arweave.
 class ArweaveService {
   Arweave _arweave = Arweave();
   Wallet _wallet;
@@ -12,6 +13,7 @@ class ArweaveService {
   String get address => _address;
   Future<String> get balance => _arweave.wallets.getBalance(_address);
 
+  /// Login using the [key], which identifies the wallet.
   bool login(Uint8List key) {
     try {
       Map<String, dynamic> mapJWK = jsonDecode(String.fromCharCodes(key));
@@ -27,8 +29,10 @@ class ArweaveService {
     return false;
   }
 
+  /// Submit new entries into the Arweave network.
   Future<void> submitEntry() async {}
 
+  /// Get user's entries from the Arweave network.
   Future<List<EntryItemModel>> getEntries() async {
     //  TEMP
     return entries;

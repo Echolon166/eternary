@@ -6,11 +6,14 @@ import 'package:eternary/src/app.dart';
 
 void main() {
   setupLicenses();
+
+  /// Register to the locator objects
   setupLocator();
 
   runApp(MyApp());
 }
 
+/// Adds missing licenses, so they can be displayed together in LicensePage
 void setupLicenses() {
   LicenseRegistry.addLicense(() async* {
     final license =

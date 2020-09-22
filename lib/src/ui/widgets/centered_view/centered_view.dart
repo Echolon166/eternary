@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Limits the width of the [child] to a maximum size.
+/// This keeps the content in the center and
+///   prevents it from sticking to corners of the screen.
 class CenteredView extends StatelessWidget {
   const CenteredView({
     Key key,

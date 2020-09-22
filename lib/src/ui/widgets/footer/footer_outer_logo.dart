@@ -1,7 +1,9 @@
+import 'package:eternary/src/ui/widgets/clickable_widget/clickable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// FooterOuterLogo will be drawn as [imagePath] and will open the [url] whenever it gets clicked.
 class FooterOuterLogo extends StatelessWidget {
   const FooterOuterLogo({
     Key key,
@@ -14,7 +16,7 @@ class FooterOuterLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return ClickableInkwell(
       onTap: () {
         _launchURL();
       },

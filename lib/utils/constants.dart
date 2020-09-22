@@ -1,14 +1,14 @@
 library constants;
 
-//  To call constants library, use the following:
-//    import 'package:eternary/utils/constants.dart' as Constants;
+///  To call constants library, use the following:
+///    import 'package:eternary/utils/constants.dart' as Constants;
 
-//  Routes
+///  Routes
 
 const String HomeRoute = 'home';
 const String TimelineRoute = 'timeline';
 
-//  Strings
+///  Strings
 
 const String appTitle = 'Eternary';
 

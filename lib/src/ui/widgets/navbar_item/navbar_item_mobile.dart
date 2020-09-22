@@ -2,6 +2,7 @@ import 'package:eternary/src/models/navbar_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+/// Mobile adaptation of the home view.
 class NavbarItemMobile extends ViewModelWidget<NavBarItemModel> {
   const NavbarItemMobile({Key key}) : super(key: key);
 

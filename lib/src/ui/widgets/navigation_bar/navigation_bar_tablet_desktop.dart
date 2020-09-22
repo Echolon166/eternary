@@ -3,6 +3,7 @@ import 'package:eternary/src/ui/widgets/navigation_bar/navbar_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 
+/// Tablet/Desktop adaptation of the navigation bar.
 class NavigationBarTabletDesktop extends StatelessWidget {
   const NavigationBarTabletDesktop({Key key}) : super(key: key);
 
@@ -18,7 +19,6 @@ class NavigationBarTabletDesktop extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              //  TODO:
               NavBarItem(
                 title: Constants.about,
                 navigationRoute: Constants.TimelineRoute,

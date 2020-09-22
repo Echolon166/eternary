@@ -9,6 +9,7 @@ import 'package:eternary/theme/text_styles.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:responsive_builder/responsive_builder.dart';
 
+/// WalletDropzone is to get the Arweave wallet keyfile from the user.
 class WalletDropzone extends StatelessWidget {
   const WalletDropzone({Key key}) : super(key: key);
 
@@ -29,27 +30,18 @@ class WalletDropzone extends StatelessWidget {
                 operation: DragOperation.copy,
                 cursor: CursorType.grab,
                 onCreated: (ctrl) => controller = ctrl,
+
+                /// Called when user drops a file to WalletDropzone.
                 onDrop: (ev) async {
-                  Uint8List data = await controller.getFileData(ev);
-                  if (locator<ArweaveService>().login(data)) {
-                    locatorNavigateTo(Constants.TimelineRoute);
-                  }
+                  loginUsingWalletKeyfile(controller, ev);
                 },
               ),
               InkWell(
-                onTap: () async {
-                  dynamic ev = await controller.pickFiles(multiple: false);
-                  Uint8List data = await controller.getFileData(ev[0]);
-                  if (locator<ArweaveService>().login(data)) {
-                    locatorNavigateTo(Constants.TimelineRoute);
-                  }
-                },
                 child: Container(
                   child: DottedBorder(
                     padding: EdgeInsets.all(20),
                     dashPattern: [4, 3, 4, 3],
                     strokeWidth: 1,
-                    //color:
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -73,11 +65,28 @@ class WalletDropzone extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                /// Called when user clicks to WalletDropzone to select a file.
+                onTap: () async {
+                  dynamic ev = await controller.pickFiles(multiple: false);
+                  loginUsingWalletKeyfile(controller, ev[0]);
+                },
               ),
             ],
           ),
         );
       },
     );
+  }
+
+  /// Login using the [key] which is obtained from the [ev], the wallet keyfile.
+  void loginUsingWalletKeyfile(
+    DropzoneViewController controller,
+    dynamic ev,
+  ) async {
+    Uint8List key = await controller.getFileData(ev[0]);
+    if (locator<ArweaveService>().login(key)) {
+      locatorNavigateTo(Constants.TimelineRoute);
+    }
   }
 }
