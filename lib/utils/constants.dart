@@ -5,15 +5,15 @@ library constants;
 
 ///  Routes
 
+const String LandingRoute = 'landing';
 const String HomeRoute = 'home';
-const String TimelineRoute = 'timeline';
 
 ///  Strings
 
 const String appTitle = 'Eternary';
 
-const String homeTitle = 'Sanctuary for Your Mind & Soul';
-const String homeDescription =
+const String landingTitle = 'Sanctuary for Your Mind & Soul';
+const String landingDescription =
     'Eternary is the place to keep your memories/thoughts privately, forever.';
 
 const String dropzoneText = "Drop an Arweave wallet keyfile to get started";

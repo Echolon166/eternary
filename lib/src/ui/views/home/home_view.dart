@@ -1,17 +1,29 @@
-import 'package:eternary/src/ui/views/home/home_content_desktop.dart';
-import 'package:eternary/src/ui/views/home/home_content_tablet_mobile.dart';
+import 'package:eternary/src/ui/widgets/entry_list/entry_list.dart';
+import 'package:eternary/src/viewmodels/home_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
+import 'package:stacked/stacked.dart';
 
-/// Landing view of the app, user must login to continue.
 class HomeView extends StatelessWidget {
   const HomeView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: HomeContentTabletMobile(),
-      desktop: HomeContentDesktop(),
+    return ViewModelBuilder<HomeViewModel>.reactive(
+      viewModelBuilder: () => HomeViewModel(),
+      onModelReady: (model) => model.getEntries(),
+      builder: (context, model, child) => SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            model.entries == null
+                ? CircularProgressIndicator()
+                : EntryList(
+                    entries: model.entries,
+                  ),
+          ],
+        ),
+      ),
     );
   }
 }

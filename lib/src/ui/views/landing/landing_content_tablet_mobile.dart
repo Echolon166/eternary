@@ -1,11 +1,11 @@
 import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:eternary/src/ui/widgets/wallet_dropzone/wallet_dropzone.dart';
 import 'package:flutter/material.dart';
-import 'package:eternary/src/ui/widgets/home_details/home_details.dart';
+import 'package:eternary/src/ui/widgets/landing_details/landing_details.dart';
 
-/// Tablet/Mobile adaptation of the home view.
-class HomeContentTabletMobile extends StatelessWidget {
-  const HomeContentTabletMobile({Key key}) : super(key: key);
+/// Tablet/Mobile adaptation of the landing view.
+class LandingContentTabletMobile extends StatelessWidget {
+  const LandingContentTabletMobile({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class HomeContentTabletMobile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              HomeDetails(),
+              LandingDetails(),
               SizedBox(
                 height: 100,
               ),

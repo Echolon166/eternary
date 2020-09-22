@@ -1,5 +1,5 @@
+import 'package:eternary/src/ui/views/landing/landing_view.dart';
 import 'package:eternary/src/ui/views/home/home_view.dart';
-import 'package:eternary/src/ui/views/timeline/timeline_view.dart';
 import 'package:flutter/material.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 
@@ -7,17 +7,17 @@ import 'package:eternary/utils/constants.dart' as Constants;
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
 
+    /// Route for the Landing view
+    case Constants.LandingRoute:
+      return _getPageRoute(LandingView(), settings);
+
     /// Route for the Home view
     case Constants.HomeRoute:
       return _getPageRoute(HomeView(), settings);
 
-    /// Route for the Timeline view
-    case Constants.TimelineRoute:
-      return _getPageRoute(TimelineView(), settings);
-
-    /// Unknown Route will be redirected to Home view
+    /// Unknown Route will be redirected to Landing view
     default:
-      return _getPageRoute(HomeView(), settings);
+      return _getPageRoute(LandingView(), settings);
   }
 }
 

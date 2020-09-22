@@ -15,20 +15,20 @@ class NavigationBarTabletDesktop extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           NavBarLogo(),
-          //  TODO: Hide in home, show in rest
+          //  TODO: Hide in landing, show in rest
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               NavBarItem(
                 title: Constants.about,
-                navigationRoute: Constants.TimelineRoute,
+                navigationRoute: Constants.HomeRoute,
               ),
               SizedBox(
                 width: 60,
               ),
               NavBarItem(
                 title: Constants.logout,
-                navigationRoute: Constants.HomeRoute,
+                navigationRoute: Constants.LandingRoute,
               ),
             ],
           ),

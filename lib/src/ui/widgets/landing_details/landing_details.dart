@@ -3,8 +3,8 @@ import 'package:eternary/theme/text_styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 
-class HomeDetails extends StatelessWidget {
-  const HomeDetails({Key key}) : super(key: key);
+class LandingDetails extends StatelessWidget {
+  const LandingDetails({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomeDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                Constants.homeTitle,
+                Constants.landingTitle,
                 textAlign: textAlignment,
                 style: titleTextStyle(
                   deviceScreenType: sizingInformation.deviceScreenType,
@@ -31,7 +31,7 @@ class HomeDetails extends StatelessWidget {
                 height: 30,
               ),
               Text(
-                Constants.homeDescription,
+                Constants.landingDescription,
                 textAlign: textAlignment,
                 style: descriptionTextStyle(
                   deviceScreenType: sizingInformation.deviceScreenType,

@@ -3,7 +3,7 @@ import 'package:eternary/src/services/arweave_service.dart';
 import 'package:eternary/src/services/locator_service.dart';
 import 'package:flutter/material.dart';
 
-class TimelineViewModel extends ChangeNotifier {
+class HomeViewModel extends ChangeNotifier {
   final _arweaveService = locator<ArweaveService>();
 
   List<EntryItemModel> _entries;

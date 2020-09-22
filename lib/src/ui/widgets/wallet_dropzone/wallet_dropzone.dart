@@ -32,7 +32,7 @@ class WalletDropzone extends StatelessWidget {
                 onCreated: (ctrl) => controller = ctrl,
 
                 /// Called when user drops a file to WalletDropzone.
-                onDrop: (ev) async {
+                onDrop: (ev) {
                   loginUsingWalletKeyfile(controller, ev);
                 },
               ),
@@ -84,9 +84,9 @@ class WalletDropzone extends StatelessWidget {
     DropzoneViewController controller,
     dynamic ev,
   ) async {
-    Uint8List key = await controller.getFileData(ev[0]);
+    Uint8List key = await controller.getFileData(ev);
     if (locator<ArweaveService>().login(key)) {
-      locatorNavigateTo(Constants.TimelineRoute);
+      locatorNavigateTo(Constants.HomeRoute);
     }
   }
 }

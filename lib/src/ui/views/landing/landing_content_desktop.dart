@@ -1,11 +1,11 @@
 import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:eternary/src/ui/widgets/home_details/home_details.dart';
+import 'package:eternary/src/ui/widgets/landing_details/landing_details.dart';
 import 'package:eternary/src/ui/widgets/wallet_dropzone/wallet_dropzone.dart';
 
-/// Desktop adaptation of the home view.
-class HomeContentDesktop extends StatelessWidget {
-  const HomeContentDesktop({Key key}) : super(key: key);
+/// Desktop adaptation of the landing view.
+class LandingContentDesktop extends StatelessWidget {
+  const LandingContentDesktop({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class HomeContentDesktop extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              HomeDetails(),
+              LandingDetails(),
               Expanded(
                 child: Center(
                   child: WalletDropzone(),

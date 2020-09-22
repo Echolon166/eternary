@@ -38,7 +38,7 @@ class LayoutTemplate extends StatelessWidget {
                   child: Navigator(
                     key: locatorGetNavigatorKey(),
                     onGenerateRoute: generateRoute,
-                    initialRoute: Constants.HomeRoute,
+                    initialRoute: Constants.LandingRoute,
                   ),
                 ),
               ],
