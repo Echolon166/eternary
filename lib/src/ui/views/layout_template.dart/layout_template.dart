@@ -23,22 +23,18 @@ class LayoutTemplate extends StatelessWidget {
           //drawer: sizingInformation.isMobile ? NavigationDrawer() : null,
           backgroundColor: Colors.white,
 
-          /// Limits the width of the content to prevent it from sticking to corners.
-          body: CenteredView(
-            /// Wraps the content with ScrollView
-            ///   if the screen is too small to fit the content.
-            child: ConstrainedFlexView(
-              700,
-              child: Column(
-                children: [
-                  /// NavigationBar will stay on top of the view even if we navigate to a different route.
-                  NavigationBar(),
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  /// View inside the navigator will change whenever we navigate to a different route.
-                  Expanded(
+          /// Wraps the content with ScrollView
+          ///   if the screen is too small to fit the content.
+          body: ConstrainedFlexView(
+            minSize: 640,
+            child: Column(
+              children: [
+                /// NavigationBar will stay on top of the view even if we navigate to a different route.
+                NavigationBar(),
+                Expanded(
+                  /// Limits the width of the content to prevent it from sticking to corners.
+                  child: CenteredView(
+                    /// View inside the navigator will change whenever we navigate to a different route.
                     child: model.loggedIn
                         ? Navigator(
                             key: model.navigatorKey,
@@ -47,8 +43,8 @@ class LayoutTemplate extends StatelessWidget {
                           )
                         : LandingView(),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

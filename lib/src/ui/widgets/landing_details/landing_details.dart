@@ -24,7 +24,6 @@ class LandingDetails extends StatelessWidget {
                 textAlign: textAlignment,
                 style: titleTextStyle(
                   deviceScreenType: sizingInformation.deviceScreenType,
-                  height: 0.9,
                 ),
               ),
               SizedBox(

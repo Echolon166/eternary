@@ -18,7 +18,7 @@ class LandingContentTabletMobile extends StatelessWidget {
             children: [
               LandingDetails(),
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               WalletDropzone(),
             ],

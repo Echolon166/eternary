@@ -6,12 +6,12 @@ TextStyle titleTextStyle({
   @required DeviceScreenType deviceScreenType,
   double height,
 }) {
-  double titleSize = deviceScreenType == DeviceScreenType.mobile ? 40 : 70;
+  double titleSize = deviceScreenType == DeviceScreenType.mobile ? 32 : 54;
   return TextStyle(
     fontSize: titleSize,
     fontWeight: FontWeight.w600,
     fontFamily: 'PalanquinDark',
-    height: height != null ? height : 1.0,
+    height: height != null ? height : 1.2,
   );
 }
 
@@ -21,7 +21,7 @@ TextStyle descriptionTextStyle({
   double height,
 }) {
   double descriptionSize =
-      deviceScreenType == DeviceScreenType.mobile ? 16 : 21;
+      deviceScreenType == DeviceScreenType.mobile ? 16 : 18;
 
   return TextStyle(
     fontSize: descriptionSize,

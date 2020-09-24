@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
       onModelReady: (model) => model.getEntries(),
       builder: (context, model, child) => SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             model.entries == null ? CircularProgressIndicator() : EntryList(),

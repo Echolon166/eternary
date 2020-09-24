@@ -3,7 +3,6 @@ import 'package:eternary/src/services/navigation_service.dart';
 import 'package:eternary/utils/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:eternary/utils/constants.dart' as Constants;
 
 class LayoutTemplateViewModel extends ReactiveViewModel {
   final AuthenticationService _authenticationService =
