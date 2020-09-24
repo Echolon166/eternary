@@ -1,14 +1,27 @@
+import 'package:eternary/src/services/authentication_service.dart';
 import 'package:eternary/src/services/navigation_service.dart';
 import 'package:eternary/utils/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:eternary/utils/constants.dart' as Constants;
 
-class LayoutTemplateViewModel extends BaseViewModel {
+class LayoutTemplateViewModel extends ReactiveViewModel {
+  final AuthenticationService _authenticationService =
+      locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
+
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_authenticationService];
+
+  bool get loggedIn => _authenticationService.loggedIn;
 
   GlobalKey<NavigatorState> get navigatorKey => _navigationService.navigatorKey;
 
-  Future navigateToRoute(String route) async {
-    await _navigationService.navigateTo(route);
+  void logOut() => _authenticationService.logOut();
+
+  Future navigateToNamedRoute({@required String routeName}) async {
+    await _navigationService.navigateToNamedRoute(
+      routeName: routeName,
+    );
   }
 }

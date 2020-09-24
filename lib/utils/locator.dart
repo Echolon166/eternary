@@ -1,4 +1,5 @@
 import 'package:eternary/src/services/arweave_service.dart';
+import 'package:eternary/src/services/authentication_service.dart';
 import 'package:eternary/src/services/navigation_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,5 +14,8 @@ void setupLocator() {
   );
   locator.registerLazySingleton(
     () => ArweaveService(),
+  );
+  locator.registerLazySingleton(
+    () => AuthenticationService(),
   );
 }

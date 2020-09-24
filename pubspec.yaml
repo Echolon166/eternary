@@ -23,22 +23,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # state
+  stacked: ^1.7.6
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
-  responsive_builder: ^0.3.0
-  flutter_dropzone: ^1.0.9
-  dotted_border: ^1.0.6
-  get_it: ^5.0.0
-  url_launcher: ^5.6.0
+  # data
   arweave:
     git:
       url: https://github.com/CDDelta/arweave-dart.git
       ref: d7b9aba76f34ef005d7ea681ffa1bd3b58181901
-  stacked: ^1.7.6
+
+  # ui
+  responsive_builder: ^0.3.0
+  flutter_dropzone: ^1.0.9
+  dotted_border: ^1.0.6
+
+  # inversion of control
+  get_it: ^5.0.0
   provider: ^4.3.2+2
+  observable_ish: ^2.1.4
+
+  url_launcher: ^5.6.0
 
 dev_dependencies:
   flutter_test:

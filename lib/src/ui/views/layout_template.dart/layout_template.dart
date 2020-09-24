@@ -1,3 +1,4 @@
+import 'package:eternary/src/ui/views/landing/landing_view.dart';
 import 'package:eternary/src/ui/widgets/centered_view/centered_view.dart';
 import 'package:eternary/src/ui/widgets/constrained_flex_view/constrained_flex_view.dart';
 import 'package:eternary/src/ui/widgets/navigation_bar/navigation_bar.dart';
@@ -15,7 +16,7 @@ class LayoutTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.nonReactive(
+    return ViewModelBuilder.reactive(
       viewModelBuilder: () => LayoutTemplateViewModel(),
       builder: (context, model, child) => ResponsiveBuilder(
         builder: (context, sizingInformation) => Scaffold(
@@ -38,11 +39,13 @@ class LayoutTemplate extends StatelessWidget {
 
                   /// View inside the navigator will change whenever we navigate to a different route.
                   Expanded(
-                    child: Navigator(
-                      key: model.navigatorKey,
-                      onGenerateRoute: generateRoute,
-                      initialRoute: Constants.LandingRoute,
-                    ),
+                    child: model.loggedIn
+                        ? Navigator(
+                            key: model.navigatorKey,
+                            onGenerateRoute: generateRoute,
+                            initialRoute: Constants.HomeRoute,
+                          )
+                        : LandingView(),
                   ),
                 ],
               ),

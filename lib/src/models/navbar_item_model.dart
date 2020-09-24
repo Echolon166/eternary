@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
+
 class NavBarItemModel {
-  const NavBarItemModel({this.title, this.navigationRoute});
+  const NavBarItemModel({this.title, this.onTap});
 
   final String title;
-  final String navigationRoute;
+  final VoidCallback onTap;
 }

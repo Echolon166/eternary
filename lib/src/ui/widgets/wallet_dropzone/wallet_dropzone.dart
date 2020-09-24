@@ -90,6 +90,6 @@ class WalletDropzone extends ViewModelWidget<LandingViewModel> {
     dynamic ev,
   ) async {
     Uint8List key = await controller.getFileData(ev);
-    viewModel.login(key);
+    viewModel.login(key: key);
   }
 }

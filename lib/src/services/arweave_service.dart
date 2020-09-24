@@ -3,30 +3,28 @@ import 'dart:typed_data';
 
 import 'package:arweave/arweave.dart';
 import 'package:eternary/src/models/entry_item_model.dart';
+import 'package:flutter/foundation.dart';
 
 /// ArweaveService is to handle the tasks which are related to Arweave.
 class ArweaveService {
   Arweave _arweave = Arweave();
-  Wallet _wallet;
-  String _address;
 
-  String get address => _address;
+  Wallet _wallet;
   Future<String> get balance => _arweave.wallets.getBalance(_address);
 
-  /// Login using the [key], which identifies the wallet.
-  bool login(Uint8List key) {
-    try {
-      Map<String, dynamic> mapJWK = jsonDecode(String.fromCharCodes(key));
+  String _address;
+  String get address => _address;
 
-      _wallet = Wallet.fromJwk(mapJWK);
-      _address = _wallet.address;
+  /// Initialize [_wallet] and [_address]
+  void initializeWallet(Map<String, dynamic> mapJWK) {
+    _wallet = Wallet.fromJwk(mapJWK);
+    _address = _wallet.address;
+  }
 
-      return true;
-    } catch (e) {
-      print(e);
-    }
-
-    return false;
+  /// Decode [key] to JWK
+  Map<String, dynamic> decodeWalletKey({@required Uint8List key}) {
+    Map<String, dynamic> mapJWK = jsonDecode(String.fromCharCodes(key));
+    return mapJWK;
   }
 
   /// Submit new entries into the Arweave network.
