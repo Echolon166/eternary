@@ -3,6 +3,7 @@ import 'package:eternary/src/ui/widgets/centered_view/centered_view.dart';
 import 'package:eternary/src/ui/widgets/constrained_flex_view/constrained_flex_view.dart';
 import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:eternary/src/ui/widgets/navigation_bar/navigation_bar.dart';
+import 'package:eternary/src/ui/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:eternary/src/viewmodels/layout_template_viewmodel.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:eternary/utils/my_router.dart';
@@ -21,7 +22,9 @@ class LayoutTemplate extends StatelessWidget {
       viewModelBuilder: () => LayoutTemplateViewModel(),
       builder: (context, model, child) => ResponsiveBuilder(
         builder: (context, sizingInformation) => Scaffold(
-          //drawer: sizingInformation.isMobile ? NavigationDrawer() : null,
+          drawer: NavigationDrawer(),
+          drawerEdgeDragWidth: 0,
+
           backgroundColor: Colors.white,
 
           /// Wraps the content with ScrollView

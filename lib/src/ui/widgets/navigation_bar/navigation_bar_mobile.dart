@@ -1,12 +1,14 @@
 import 'package:eternary/src/ui/widgets/navigation_bar/navbar_logo.dart';
+import 'package:eternary/src/viewmodels/layout_template_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 /// Mobile adaptation of the home view.
-class NavigationBarMobile extends StatelessWidget {
+class NavigationBarMobile extends ViewModelWidget<LayoutTemplateViewModel> {
   const NavigationBarMobile({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, LayoutTemplateViewModel viewModel) {
     return Material(
       elevation: 1,
       child: Container(
@@ -19,11 +21,14 @@ class NavigationBarMobile extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: null,
-              //  TODO: Implement drawer
-            ),
+            viewModel.loggedIn
+                ? IconButton(
+                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  )
+                : SizedBox(),
             NavBarLogo(),
           ],
         ),

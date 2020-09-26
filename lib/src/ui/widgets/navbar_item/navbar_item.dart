@@ -11,15 +11,21 @@ class NavBarItem extends StatelessWidget {
   const NavBarItem({
     Key key,
     this.title,
+    this.icon,
     this.onTap,
   }) : super(key: key);
 
   final String title;
+  final IconData icon;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    var model = NavBarItemModel(title: title, onTap: onTap);
+    var model = NavBarItemModel(
+      title: title,
+      icon: icon,
+      onTap: onTap,
+    );
 
     return ClickableInkwell(
       onTap: onTap,
