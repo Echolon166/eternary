@@ -1,6 +1,7 @@
 import 'package:eternary/src/models/entry_item_model.dart';
 import 'package:eternary/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class EntryItem extends StatelessWidget {
@@ -21,14 +22,11 @@ class EntryItem extends StatelessWidget {
                 ? 500
                 : 720;
         double iconSize = sizingInformation.isMobile ? 16 : 18;
+        double textSize = sizingInformation.isMobile ? 14 : 16;
 
         bool isEntryTextEmpty = (entry.text == '' || entry.text == null);
 
         return Card(
-          margin: EdgeInsets.only(
-            bottom: 10.0,
-            top: 10.0,
-          ),
           color: Colors.white,
           elevation: 2,
           child: SizedBox(
@@ -43,11 +41,30 @@ class EntryItem extends StatelessWidget {
                 children: [
                   isEntryTextEmpty
                       ? SizedBox()
-                      : Text(
-                          entry.text,
-                          style: smallDescriptionTextStyle(
-                            deviceScreenType:
-                                sizingInformation.deviceScreenType,
+                      : MarkdownBody(
+                          data: entry.text,
+                          styleSheet:
+                              MarkdownStyleSheet.fromTheme(Theme.of(context))
+                                  .copyWith(
+                            h1: Theme.of(context).textTheme.bodyText2.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'PalanquinDark',
+                                  fontSize: textSize + 6.0,
+                                ),
+                            h2: Theme.of(context).textTheme.bodyText2.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'PalanquinDark',
+                                  fontSize: textSize + 4.0,
+                                ),
+                            h3: Theme.of(context).textTheme.bodyText2.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'PalanquinDark',
+                                  fontSize: textSize + 2.0,
+                                ),
+                            p: Theme.of(context).textTheme.bodyText2.copyWith(
+                                  fontSize: textSize,
+                                  fontFamily: 'Overpass',
+                                ),
                           ),
                         ),
                   SizedBox(

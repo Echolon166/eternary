@@ -6,11 +6,24 @@ import 'package:stacked/stacked.dart';
 class HomeViewModel extends BaseViewModel {
   final ArweaveService _arweaveService = locator<ArweaveService>();
 
+  bool _isSubmitting = false;
+  bool get isSubmitting => _isSubmitting;
+
   String _newEntry;
   String get newEntry => _newEntry;
 
   List<EntryItemModel> _entries;
   List<EntryItemModel> get entries => _entries;
+
+  void updateIsSubmitting(bool value) {
+    _isSubmitting = value;
+
+    if (value == false) {
+      updateNewEntry('');
+    }
+
+    notifyListeners();
+  }
 
   void updateNewEntry(String value) {
     _newEntry = value;
@@ -22,6 +35,8 @@ class HomeViewModel extends BaseViewModel {
     _arweaveService.submitEntry(_newEntry);
 
     getEntries();
+
+    updateIsSubmitting(false);
   }
 
   Future getEntries() async {

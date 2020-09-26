@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:eternary/src/services/arweave_service.dart';
 import 'package:eternary/utils/locator.dart';
 import 'package:flutter/foundation.dart';
-import 'package:observable_ish/observable_ish.dart';
 import 'package:stacked/stacked.dart';
 
 class AuthenticationService with ReactiveServiceMixin {
@@ -13,8 +12,8 @@ class AuthenticationService with ReactiveServiceMixin {
 
   ArweaveService _arweaveService = locator<ArweaveService>();
 
-  RxValue<bool> _loggedIn = RxValue<bool>(initial: false);
-  bool get loggedIn => _loggedIn.value;
+  bool _loggedIn = false;
+  bool get loggedIn => _loggedIn;
 
   /// Login using the [key], which identifies the wallet.
   bool login({@required Uint8List key}) {
@@ -23,7 +22,8 @@ class AuthenticationService with ReactiveServiceMixin {
         _arweaveService.decodeWalletKey(key: key),
       );
 
-      _loggedIn.value = true;
+      _loggedIn = true;
+      notifyListeners();
       return true;
     } catch (e) {
       print(e);
@@ -33,6 +33,7 @@ class AuthenticationService with ReactiveServiceMixin {
   }
 
   void logOut() {
-    _loggedIn.value = false;
+    _loggedIn = false;
+    notifyListeners();
   }
 }

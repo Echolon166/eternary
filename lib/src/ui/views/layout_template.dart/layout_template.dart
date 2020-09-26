@@ -1,3 +1,4 @@
+import 'package:eternary/src/ui/views/home/home_view.dart';
 import 'package:eternary/src/ui/views/landing/landing_view.dart';
 import 'package:eternary/src/ui/widgets/centered_view/centered_view.dart';
 import 'package:eternary/src/ui/widgets/constrained_flex_view/constrained_flex_view.dart';

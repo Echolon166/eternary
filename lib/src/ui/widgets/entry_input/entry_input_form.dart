@@ -1,9 +1,9 @@
 import 'package:eternary/src/viewmodels/home_viewmodel.dart';
-import 'package:eternary/theme/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:markdown_editable_textinput/markdown_text_input.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:eternary/utils/constants.dart' as Constants;
 import 'package:stacked_hooks/stacked_hooks.dart';
 
 class EntryInputForm extends HookViewModelWidget<HomeViewModel> {
@@ -19,27 +19,17 @@ class EntryInputForm extends HookViewModelWidget<HomeViewModel> {
 
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        return TextField(
-          maxLines: 8,
-          decoration: InputDecoration(
-            hintText: Constants.entryHintText,
-            labelText: Constants.entryLabelText,
-            hintStyle: smallDescriptionTextStyle(
-              deviceScreenType: sizingInformation.deviceScreenType,
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            MarkdownTextInput(
+              (String value) => viewModel.updateNewEntry(value),
+              _entryController.text,
+              label: Constants.entryLabelText,
+              maxLines: 6,
             ),
-            labelStyle: smallDescriptionTextStyle(
-              deviceScreenType: sizingInformation.deviceScreenType,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
-              borderSide: BorderSide(
-                color: Color(0xFFC4C4C4),
-              ),
-            ),
-          ),
-          controller: _entryController,
-          onChanged: viewModel.updateNewEntry,
-          textAlign: TextAlign.justify,
+          ],
         );
       },
     );
