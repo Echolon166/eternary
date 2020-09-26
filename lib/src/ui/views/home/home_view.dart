@@ -1,3 +1,4 @@
+import 'package:eternary/src/ui/widgets/entry_input/entry_input.dart';
 import 'package:eternary/src/ui/widgets/entry_list/entry_list.dart';
 import 'package:eternary/src/viewmodels/home_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +12,25 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
       onModelReady: (model) => model.getEntries(),
-      builder: (context, model, child) => SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            model.entries == null ? CircularProgressIndicator() : EntryList(),
-          ],
-        ),
+      builder: (context, model, child) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Container(),
+                  EntryInput(),
+                  model.entries == null
+                      ? CircularProgressIndicator()
+                      : EntryList(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

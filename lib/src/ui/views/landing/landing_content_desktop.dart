@@ -23,10 +23,6 @@ class LandingContentDesktop extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: 20,
-        ),
-        Footer(),
       ],
     );
   }

@@ -29,3 +29,18 @@ TextStyle descriptionTextStyle({
     height: height != null ? height : 1.0,
   );
 }
+
+/// Return the style for small description text on a page based on the [deviceScreenType] passed in.
+TextStyle smallDescriptionTextStyle({
+  @required DeviceScreenType deviceScreenType,
+  double height,
+}) {
+  double descriptionSize =
+      deviceScreenType == DeviceScreenType.mobile ? 14 : 16;
+
+  return TextStyle(
+    fontSize: descriptionSize,
+    fontFamily: 'Overpass',
+    height: height != null ? height : 1.0,
+  );
+}

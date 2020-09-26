@@ -1,6 +1,7 @@
 import 'package:eternary/src/ui/views/landing/landing_view.dart';
 import 'package:eternary/src/ui/widgets/centered_view/centered_view.dart';
 import 'package:eternary/src/ui/widgets/constrained_flex_view/constrained_flex_view.dart';
+import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:eternary/src/ui/widgets/navigation_bar/navigation_bar.dart';
 import 'package:eternary/src/viewmodels/layout_template_viewmodel.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
@@ -34,14 +35,24 @@ class LayoutTemplate extends StatelessWidget {
                 Expanded(
                   /// Limits the width of the content to prevent it from sticking to corners.
                   child: CenteredView(
-                    /// View inside the navigator will change whenever we navigate to a different route.
-                    child: model.loggedIn
-                        ? Navigator(
-                            key: model.navigatorKey,
-                            onGenerateRoute: generateRoute,
-                            initialRoute: Constants.HomeRoute,
-                          )
-                        : LandingView(),
+                    child: Column(
+                      children: [
+                        /// View inside the navigator will change whenever we navigate to a different route.
+                        Expanded(
+                          child: model.loggedIn
+                              ? Navigator(
+                                  key: model.navigatorKey,
+                                  onGenerateRoute: generateRoute,
+                                  initialRoute: Constants.HomeRoute,
+                                )
+                              : LandingView(),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Footer(),
+                      ],
+                    ),
                   ),
                 ),
               ],

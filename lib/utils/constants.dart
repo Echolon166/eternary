@@ -18,5 +18,9 @@ const String landingDescription =
 
 const String dropzoneText = "Drop an Arweave wallet keyfile to get started";
 
-const String about = 'About';
+//  TODO: Write hint and label
+const String entryHintText = 'Hint';
+const String entryLabelText = 'Label';
+
+const String save = 'Save';
 const String logout = 'Logout';

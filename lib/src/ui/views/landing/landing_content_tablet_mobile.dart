@@ -24,10 +24,6 @@ class LandingContentTabletMobile extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: 20,
-        ),
-        Footer(),
       ],
     );
   }

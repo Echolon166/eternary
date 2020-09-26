@@ -1,6 +1,9 @@
 class EntryItemModel {
-  const EntryItemModel({this.title, this.entryText});
+  const EntryItemModel({
+    this.text,
+    this.date,
+  });
 
-  final String title;
-  final String entryText;
+  final String text;
+  final String date;
 }

@@ -28,7 +28,16 @@ class ArweaveService {
   }
 
   /// Submit new entries into the Arweave network.
-  Future<void> submitEntry() async {}
+  Future<void> submitEntry(String newEntry) async {
+    //  TEMP
+    entries.insert(
+      0,
+      EntryItemModel(
+        text: newEntry,
+        date: 'New date',
+      ),
+    );
+  }
 
   /// Get user's entries from the Arweave network.
   Future<List<EntryItemModel>> getEntries() async {
@@ -39,116 +48,33 @@ class ArweaveService {
   final List<EntryItemModel> entries = [
     //  TEMP ENTRIES, TODO: FETCH ENTRIES FROM ARWEAVE
     EntryItemModel(
-      title: 'Entry 1',
-      entryText: 'Today was good!',
+      text: 'Today was good!',
+      date: 'September 25, 2020, 10:46 AM',
     ),
     EntryItemModel(
-      title: 'Entry 2',
-      entryText: 'Hail Hydra',
+      text: 'Hail Hydra',
+      date: 'September 25, 2020, 10:46 AM',
     ),
     EntryItemModel(
-      title: 'My Entry',
-      entryText: 'This one is different from the rest',
+      text: 'This one is different from the rest',
+      date: 'September 25, 2020, 10:46 AM',
     ),
     EntryItemModel(
-      title: 'Boring Entry',
-      entryText: 'Boring Text',
+      text: '',
+      date: 'September 25, 2020, 10:46 AM',
     ),
     EntryItemModel(
-      title: 'title',
-      entryText: 'text',
+      text: 'Long Text',
+      date: 'September 25, 2020, 10:46 AM',
     ),
     EntryItemModel(
-      title: 'title23',
-      entryText: 'text23',
+      text:
+          'Long TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong Text',
+      date: 'September 25, 2020, 10:46 AM',
     ),
     EntryItemModel(
-      title: 'lasttitle',
-      entryText: 'lasttext',
-    ),
-    EntryItemModel(
-      title: 'Entry 1',
-      entryText: 'Today was good!',
-    ),
-    EntryItemModel(
-      title: 'Entry 2',
-      entryText: 'Hail Hydra',
-    ),
-    EntryItemModel(
-      title: 'My Entry',
-      entryText: 'This one is different from the rest',
-    ),
-    EntryItemModel(
-      title: 'Boring Entry',
-      entryText: 'Boring Text',
-    ),
-    EntryItemModel(
-      title: 'title',
-      entryText: 'text',
-    ),
-    EntryItemModel(
-      title: 'title23',
-      entryText: 'text23',
-    ),
-    EntryItemModel(
-      title: 'lasttitle',
-      entryText: 'lasttext',
-    ),
-    EntryItemModel(
-      title: 'Entry 1',
-      entryText: 'Today was good!',
-    ),
-    EntryItemModel(
-      title: 'Entry 2',
-      entryText: 'Hail Hydra',
-    ),
-    EntryItemModel(
-      title: 'My Entry',
-      entryText: 'This one is different from the rest',
-    ),
-    EntryItemModel(
-      title: 'Boring Entry',
-      entryText: 'Boring Text',
-    ),
-    EntryItemModel(
-      title: 'title',
-      entryText: 'text',
-    ),
-    EntryItemModel(
-      title: 'title23',
-      entryText: 'text23',
-    ),
-    EntryItemModel(
-      title: 'lasttitle',
-      entryText: 'lasttext',
-    ),
-    EntryItemModel(
-      title: 'Entry 1',
-      entryText: 'Today was good!',
-    ),
-    EntryItemModel(
-      title: 'Entry 2',
-      entryText: 'Hail Hydra',
-    ),
-    EntryItemModel(
-      title: 'My Entry',
-      entryText: 'This one is different from the rest',
-    ),
-    EntryItemModel(
-      title: 'Boring Entry',
-      entryText: 'Boring Text',
-    ),
-    EntryItemModel(
-      title: 'title',
-      entryText: 'text',
-    ),
-    EntryItemModel(
-      title: 'title23',
-      entryText: 'text23',
-    ),
-    EntryItemModel(
-      title: 'lasttitle',
-      entryText: 'lasttext',
+      text: 'lasttext',
+      date: 'September 25, 2020, 10:46 AM',
     ),
   ];
 }
