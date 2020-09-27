@@ -21,18 +21,22 @@ class NavigationBarMobile extends ViewModelWidget<LayoutTemplateViewModel> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            viewModel.loggedIn
-                ? IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                  )
-                : SizedBox(),
+            _navBarRow(context, viewModel),
             NavBarLogo(),
           ],
         ),
       ),
     );
+  }
+
+  Widget _navBarRow(BuildContext context, LayoutTemplateViewModel viewModel) {
+    return viewModel.loggedIn
+        ? IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          )
+        : SizedBox();
   }
 }

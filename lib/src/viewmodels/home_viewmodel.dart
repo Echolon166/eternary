@@ -6,6 +6,8 @@ import 'package:stacked/stacked.dart';
 class HomeViewModel extends BaseViewModel {
   final ArweaveService _arweaveService = locator<ArweaveService>();
 
+  String get address => _arweaveService.address;
+
   bool _isSubmitting = false;
   bool get isSubmitting => _isSubmitting;
 

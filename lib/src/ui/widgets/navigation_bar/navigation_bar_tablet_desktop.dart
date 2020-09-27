@@ -22,21 +22,25 @@ class NavigationBarTabletDesktop
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               NavBarLogo(),
-              viewModel.loggedIn
-                  ? Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        NavBarItem(
-                          title: Constants.logout,
-                          onTap: viewModel.logOut,
-                        ),
-                      ],
-                    )
-                  : SizedBox(),
+              _navBarRow(viewModel),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _navBarRow(LayoutTemplateViewModel viewModel) {
+    return viewModel.loggedIn
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              NavBarItem(
+                title: Constants.logout,
+                onTap: viewModel.logOut,
+              ),
+            ],
+          )
+        : SizedBox();
   }
 }

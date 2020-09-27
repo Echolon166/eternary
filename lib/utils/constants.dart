@@ -18,6 +18,9 @@ const String landingDescription =
 
 const String dropzoneText = "Drop an Arweave wallet keyfile to get started";
 
+const String fetchingEntries = 'Fetching entries from Arweave';
+const String walletAddress = 'Wallet address:';
+
 const String addNewEntry = 'Add New Entry';
 const String preview = 'Preview';
 const String entryLabelText = 'How\'s your day?';

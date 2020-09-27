@@ -27,8 +27,6 @@ class EntryItem extends StatelessWidget {
         double iconSize = sizingInformation.isMobile ? 16 : 18;
         double textSize = sizingInformation.isMobile ? 14 : 16;
 
-        bool isEntryTextEmpty = (entry.text == '' || entry.text == null);
-
         return Card(
           color: Colors.white,
           elevation: 2,
@@ -42,62 +40,17 @@ class EntryItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  isEntryTextEmpty
-                      ? SizedBox()
-                      : MarkdownBody(
-                          data: entry.text,
-                          styleSheet:
-                              MarkdownStyleSheet.fromTheme(Theme.of(context))
-                                  .copyWith(
-                            h1: Theme.of(context).textTheme.bodyText2.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PalanquinDark',
-                                  fontSize: textSize + 6.0,
-                                ),
-                            h2: Theme.of(context).textTheme.bodyText2.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PalanquinDark',
-                                  fontSize: textSize + 4.0,
-                                ),
-                            h3: Theme.of(context).textTheme.bodyText2.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PalanquinDark',
-                                  fontSize: textSize + 2.0,
-                                ),
-                            p: Theme.of(context).textTheme.bodyText2.copyWith(
-                                  fontSize: textSize,
-                                  fontFamily: 'Overpass',
-                                ),
-                          ),
-                        ),
+                  _entryBody(
+                    context,
+                    textSize,
+                  ),
                   SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.event_note,
-                        size: iconSize,
-                        color: Color(0xFF3C4858),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 8.0,
-                          right: 8.0,
-                          bottom: 6.0,
-                          top: 10.0,
-                        ),
-                        child: Text(
-                          entry.date != null
-                              ? dateFormat.format(entry.date)
-                              : '-',
-                          style: smallDescriptionTextStyle(
-                            deviceScreenType:
-                                sizingInformation.deviceScreenType,
-                          ),
-                        ),
-                      ),
-                    ],
+                  _entryDate(
+                    sizingInformation.deviceScreenType,
+                    dateFormat,
+                    iconSize,
                   ),
                 ],
               ),
@@ -105,6 +58,68 @@ class EntryItem extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _entryBody(BuildContext context, double textSize) {
+    bool isEntryTextEmpty = (entry.text == '' || entry.text == null);
+
+    return isEntryTextEmpty
+        ? SizedBox()
+        : MarkdownBody(
+            data: entry.text,
+            styleSheet:
+                MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+              h1: Theme.of(context).textTheme.bodyText2.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'PalanquinDark',
+                    fontSize: textSize + 6.0,
+                  ),
+              h2: Theme.of(context).textTheme.bodyText2.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'PalanquinDark',
+                    fontSize: textSize + 4.0,
+                  ),
+              h3: Theme.of(context).textTheme.bodyText2.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'PalanquinDark',
+                    fontSize: textSize + 2.0,
+                  ),
+              p: Theme.of(context).textTheme.bodyText2.copyWith(
+                    fontSize: textSize,
+                    fontFamily: 'Overpass',
+                  ),
+            ),
+          );
+  }
+
+  Widget _entryDate(
+    DeviceScreenType deviceScreenType,
+    DateFormat dateFormat,
+    double iconSize,
+  ) {
+    return Row(
+      children: [
+        Icon(
+          Icons.event_note,
+          size: iconSize,
+          color: Color(0xFF3C4858),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 8.0,
+            right: 8.0,
+            bottom: 6.0,
+            top: 10.0,
+          ),
+          child: Text(
+            entry.date != null ? dateFormat.format(entry.date) : '-',
+            style: smallDescriptionTextStyle(
+              deviceScreenType: deviceScreenType,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
