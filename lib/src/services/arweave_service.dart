@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:arweave/arweave.dart';
+import 'package:arweave/utils.dart';
 import 'package:eternary/src/models/entry_item_model.dart';
 import 'package:flutter/foundation.dart';
 
 /// ArweaveService is to handle the tasks which are related to Arweave.
 class ArweaveService {
+  String _appTag = 'eternary';
+
   Arweave _arweave = Arweave();
 
   Wallet _wallet;
@@ -28,53 +31,57 @@ class ArweaveService {
   }
 
   /// Submit new entries into the Arweave network.
-  Future<void> submitEntry(String newEntry) async {
-    //  TEMP
-    entries.insert(
-      0,
-      EntryItemModel(
-        text: newEntry,
-        date: 'New date',
+  Future<void> submitEntry(EntryItemModel newEntry) async {
+    final transaction = await _arweave.transactions.prepare(
+      Transaction.withJsonData(
+        data: newEntry.toJson(),
       ),
+      _wallet,
     );
+
+    transaction.addTag('app-name', _appTag);
+
+    await transaction.sign(_wallet);
+
+    await _arweave.transactions.post(transaction);
   }
 
   /// Get user's entries from the Arweave network.
   Future<List<EntryItemModel>> getEntries() async {
-    //  TEMP
-    return entries;
-  }
+    List<EntryItemModel> entryList = List<EntryItemModel>();
 
-  final List<EntryItemModel> entries = [
-    //  TEMP ENTRIES, TODO: FETCH ENTRIES FROM ARWEAVE
-    EntryItemModel(
-      text: 'Today was good!',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-    EntryItemModel(
-      text: 'Hail Hydra',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-    EntryItemModel(
-      text: 'This one is different from the rest',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-    EntryItemModel(
-      text: '',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-    EntryItemModel(
-      text: 'Long Text',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-    EntryItemModel(
-      text:
-          'Long TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong TextLong Text',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-    EntryItemModel(
-      text: 'lasttext',
-      date: 'September 25, 2020, 10:46 AM',
-    ),
-  ];
+    Map<String, dynamic> query = {
+      "op": "and",
+      "expr1": {
+        "op": "equals",
+        "expr1": "app-name",
+        "expr2": _appTag,
+      },
+      "expr2": {
+        "op": "equals",
+        "expr1": "from",
+        "expr2": address,
+      },
+    };
+
+    List<String> result = await _arweave.transactions.arql(query);
+
+    var it = result.iterator;
+
+    while (it.moveNext()) {
+      try {
+        String data = await _arweave.transactions.getData(it.current);
+
+        entryList.add(
+          EntryItemModel().fromJson(
+            jsonDecode(decodeBase64ToString(data)),
+          ),
+        );
+      } catch (e) {
+        continue;
+      }
+    }
+
+    return entryList;
+  }
 }

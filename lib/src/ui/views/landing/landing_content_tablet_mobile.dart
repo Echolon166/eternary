@@ -1,4 +1,3 @@
-import 'package:eternary/src/ui/widgets/footer/footer.dart';
 import 'package:eternary/src/ui/widgets/wallet_dropzone/wallet_dropzone.dart';
 import 'package:flutter/material.dart';
 import 'package:eternary/src/ui/widgets/landing_details/landing_details.dart';

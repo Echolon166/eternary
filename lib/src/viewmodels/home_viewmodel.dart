@@ -9,8 +9,8 @@ class HomeViewModel extends BaseViewModel {
   bool _isSubmitting = false;
   bool get isSubmitting => _isSubmitting;
 
-  String _newEntry;
-  String get newEntry => _newEntry;
+  String _newEntryText;
+  String get newEntry => _newEntryText;
 
   List<EntryItemModel> _entries;
   List<EntryItemModel> get entries => _entries;
@@ -19,22 +19,25 @@ class HomeViewModel extends BaseViewModel {
     _isSubmitting = value;
 
     if (value == false) {
-      updateNewEntry('');
+      updateNewEntryText('');
     }
 
     notifyListeners();
   }
 
-  void updateNewEntry(String value) {
-    _newEntry = value;
+  void updateNewEntryText(String value) {
+    _newEntryText = value;
 
     notifyListeners();
   }
 
   void submitNewEntry() {
-    _arweaveService.submitEntry(_newEntry);
+    EntryItemModel newEntry = EntryItemModel(
+      text: _newEntryText,
+      date: DateTime.now(),
+    );
 
-    getEntries();
+    _arweaveService.submitEntry(newEntry);
 
     updateIsSubmitting(false);
   }

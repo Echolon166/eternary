@@ -24,7 +24,7 @@ class EntryInputForm extends HookViewModelWidget<HomeViewModel> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             MarkdownTextInput(
-              (String value) => viewModel.updateNewEntry(value),
+              (String value) => viewModel.updateNewEntryText(value),
               _entryController.text,
               label: Constants.entryLabelText,
               maxLines: 6,

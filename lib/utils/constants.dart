@@ -21,7 +21,6 @@ const String dropzoneText = "Drop an Arweave wallet keyfile to get started";
 const String addNewEntry = 'Add New Entry';
 const String preview = 'Preview';
 const String entryLabelText = 'How\'s your day?';
-const String notSubmittedYet = 'Not submitted yet';
 
 const String save = 'Save';
 const String logout = 'Logout';

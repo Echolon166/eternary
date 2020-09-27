@@ -2,6 +2,7 @@ import 'package:eternary/src/models/entry_item_model.dart';
 import 'package:eternary/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:intl/intl.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class EntryItem extends StatelessWidget {
@@ -14,6 +15,8 @@ class EntryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat('MMMM d, y,').add_jm();
+
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         double itemWidth = sizingInformation.isMobile
@@ -85,7 +88,9 @@ class EntryItem extends StatelessWidget {
                           top: 10.0,
                         ),
                         child: Text(
-                          entry.date,
+                          entry.date != null
+                              ? dateFormat.format(entry.date)
+                              : '-',
                           style: smallDescriptionTextStyle(
                             deviceScreenType:
                                 sizingInformation.deviceScreenType,

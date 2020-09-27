@@ -164,7 +164,6 @@ class EntryInput extends ViewModelWidget<HomeViewModel> {
         child: EntryItem(
           entry: EntryItemModel(
             text: viewModel.newEntry,
-            date: Constants.notSubmittedYet,
           ),
         ),
       ),

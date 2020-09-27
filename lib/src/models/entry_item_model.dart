@@ -5,5 +5,15 @@ class EntryItemModel {
   });
 
   final String text;
-  final String date;
+  final DateTime date;
+
+  Map<String, dynamic> toJson() => {
+        'text': text,
+        'date': date.toIso8601String(),
+      };
+
+  EntryItemModel fromJson(Map<String, dynamic> json) => EntryItemModel(
+        text: json['text'] as String,
+        date: DateTime.parse(json['date'] as String),
+      );
 }

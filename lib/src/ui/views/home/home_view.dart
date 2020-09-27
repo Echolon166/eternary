@@ -24,7 +24,10 @@ class HomeView extends StatelessWidget {
                   Container(),
                   EntryInput(),
                   model.entries == null
-                      ? CircularProgressIndicator()
+                      ? Container(
+                          margin: EdgeInsets.all(20),
+                          child: CircularProgressIndicator(),
+                        )
                       : EntryList(),
                 ],
               ),
