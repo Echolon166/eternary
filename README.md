@@ -1,16 +1,16 @@
-# eternary
 
-A new Flutter project.
+# Eternary
 
-## Getting Started
+A journal application to pen down your memories/thoughts, and store them on Arweave, forever.
 
-This project is a starting point for a Flutter application.
+Application is available on the permaweb: [Eternary](https://arweave.net/_sRU8D3x_KflSnW28HG3iArjZDmP4_SRTaP0-6hl1Qg)
 
-A few resources to get you started if this is your first Flutter project:
+## About
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Eternary is a Flutter web application, built for the [Open Web Hackathon: Build A Simple Permaweb App](https://gitcoin.co/issue/ArweaveTeam/Bounties/1/3184).
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- The application uses [CDDelta/arweave-dart](https://github.com/CDDelta/arweave-dart) to interact with Arweave’s network.
+
+## License
+
+MIT license
