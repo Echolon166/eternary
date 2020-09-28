@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 /// ArweaveService is to handle the tasks which are related to Arweave.
 class ArweaveService {
   String _appTag = 'eternary';
+  List<String> _pendingEntries;
 
   Arweave _arweave = Arweave();
 
@@ -49,6 +50,7 @@ class ArweaveService {
   /// Get user's entries from the Arweave network.
   Future<List<EntryItemModel>> getEntries() async {
     List<EntryItemModel> entryList = List<EntryItemModel>();
+    _pendingEntries = List<String>();
 
     Map<String, dynamic> query = {
       "op": "and",
@@ -78,7 +80,42 @@ class ArweaveService {
           ),
         );
       } catch (e) {
+        _pendingEntries.add(it.current);
         continue;
+      }
+    }
+
+    return entryList;
+  }
+
+  /// Get user's pending entries from the Arweave network.
+  /// Call it after the getEntries().
+  Future<List<EntryItemModel>> getPendingEntries() async {
+    if (_pendingEntries.isEmpty) {
+      return [];
+    }
+
+    List<EntryItemModel> entryList = List<EntryItemModel>();
+
+    var it = _pendingEntries.iterator;
+
+    /// Loop until pending entries gets identified by the system.
+    while (it.moveNext()) {
+      bool pending = true;
+      while (pending) {
+        try {
+          String data = await _arweave.transactions.getData(it.current);
+
+          entryList.add(
+            EntryItemModel().fromJson(
+              jsonDecode(decodeBase64ToString(data)),
+            ),
+          );
+
+          pending = false;
+        } catch (e) {
+          continue;
+        }
       }
     }
 

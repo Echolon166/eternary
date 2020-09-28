@@ -4,6 +4,7 @@ import 'package:eternary/src/ui/widgets/entry_list/entry_item.dart';
 import 'package:eternary/src/viewmodels/home_viewmodel.dart';
 import 'package:eternary/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 import 'package:eternary/utils/constants.dart' as Constants;
@@ -26,19 +27,39 @@ class EntryInput extends ViewModelWidget<HomeViewModel> {
         return Column(
           children: [
             if (viewModel.isSubmitting) ...[
-              _newEntryInputCard(viewModel, fieldWidth, buttonSize, iconSize),
+              _newEntryInputCard(
+                  context,
+                  viewModel,
+                  sizingInformation.deviceScreenType,
+                  fieldWidth,
+                  buttonSize,
+                  iconSize),
               _previewEntryItem(viewModel),
             ] else
-              _addNewEntryButton(viewModel, sizingInformation.deviceScreenType),
+              viewModel.isPending
+                  ? _entryButton(
+                      viewModel,
+                      sizingInformation.deviceScreenType,
+                      Constants.pleaseWait,
+                      null,
+                    )
+                  : _entryButton(
+                      viewModel,
+                      sizingInformation.deviceScreenType,
+                      Constants.addNewEntry,
+                      () => viewModel.updateIsSubmitting(true),
+                    ),
           ],
         );
       },
     );
   }
 
-  Widget _addNewEntryButton(
+  Widget _entryButton(
     HomeViewModel viewModel,
     DeviceScreenType deviceScreenType,
+    String buttonText,
+    VoidCallback onPressed,
   ) {
     return Container(
       margin: EdgeInsets.only(
@@ -55,9 +76,9 @@ class EntryInput extends ViewModelWidget<HomeViewModel> {
           ),
           borderRadius: BorderRadius.circular(30.0),
         ),
-        onPressed: () => viewModel.updateIsSubmitting(true),
+        onPressed: onPressed,
         child: Text(
-          Constants.addNewEntry,
+          buttonText,
           style: descriptionTextStyle(
             deviceScreenType: deviceScreenType,
           ),
@@ -67,7 +88,9 @@ class EntryInput extends ViewModelWidget<HomeViewModel> {
   }
 
   Widget _newEntryInputCard(
+    BuildContext context,
     HomeViewModel viewModel,
+    DeviceScreenType deviceScreenType,
     double fieldWidth,
     double buttonSize,
     double iconSize,
@@ -112,7 +135,13 @@ class EntryInput extends ViewModelWidget<HomeViewModel> {
                     iconSize,
                     Icons.check,
                     Colors.green,
-                    () => viewModel.submitNewEntry(),
+                    () {
+                      _showToast(
+                        context,
+                        deviceScreenType,
+                      );
+                      viewModel.submitNewEntry();
+                    },
                   ),
                 ],
               ),
@@ -167,6 +196,41 @@ class EntryInput extends ViewModelWidget<HomeViewModel> {
           ),
         ),
       ),
+    );
+  }
+
+  _showToast(BuildContext context, DeviceScreenType deviceScreenType) {
+    FToast fToast = FToast();
+    fToast.init(context);
+
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.greenAccent,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.check),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text(
+            Constants.entrySent,
+            style: TextStyle(
+              fontSize: 14,
+              fontFamily: 'Overpass',
+            ),
+          ),
+        ],
+      ),
+    );
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: Duration(seconds: 3),
     );
   }
 }

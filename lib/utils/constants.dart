@@ -21,9 +21,12 @@ const String dropzoneText = "Drop an Arweave wallet keyfile to get started";
 const String fetchingEntries = 'Fetching entries from Arweave';
 const String walletAddress = 'Wallet address:';
 
+const String pleaseWait = 'Please Wait';
 const String addNewEntry = 'Add New Entry';
 const String preview = 'Preview';
 const String entryLabelText = 'How\'s your day?';
+
+const String entrySent = "Entry sent! Please wait to complete transaction.";
 
 const String save = 'Save';
 const String logout = 'Logout';
